@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetMatik - LGS Başarı &amp; Hazırlık Platformu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top, rgba(125, 211, 252, 0.22), transparent 35%),
+                        linear-gradient(180deg, #f4f9ff 0%, #edf5ff 100%);
+            color: #1e293b;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0f172a;
+            padding: 15px 8%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-logos {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .netmatik-logo {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            background: transparent;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #38bdf8;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #081c32 0%, #12365a 35%, #0b6db3 100%);
+            color: white;
+            padding: 90px 8%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 80px rgba(125, 211, 252, 0.18);
+        }
+
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text { max-width: 780px; }
+
+        .hero-tag {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .hero-text h1 {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-main {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+            box-shadow: 0 8px 18px rgba(14, 165, 233, 0.32);
+        }
+
+        .btn-main:hover { background: linear-gradient(135deg, #38bdf8, #0369a1); transform: translateY(-3px); }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.18);
+        }
+
+        .btn-secondary:hover { background: rgba(255,255,255,0.18); box-shadow: 0 8px 18px rgba(148, 163, 184, 0.18); }
+
+        .hero-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #334155;
+            padding: 25px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .badge-icon {
+            font-size: 36px;
+            color: #f59e0b;
+        }
+
+        .profile-badge h4 { font-size: 14px; color: #f59e0b; }
+        .profile-badge p { font-size: 13px; color: #cbd5e1; }
+
+        /* SEKSİYON BAŞLIKLARI */
+        .main-container { padding: 70px 8%; }
+
+        .section-heading-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 12px;
+        }
+
+        .curriculum-mark {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .curriculum-mark img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            padding: 3px;
+            border: 1px solid #dbeafe;
+            border-radius: 6px;
+            background: #fff;
+        }
+
+        .section-heading {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .section-heading span { color: #0284c7; }
+
+        .section-sub {
+            text-align: center;
+            color: #64748b;
+            font-size: 15px;
+            margin-bottom: 45px;
+        }
+
+        /* DERS KARTLARI */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .subject-card {
+            background: rgba(255,255,255,0.94);
+            padding: 28px;
+            border-radius: 16px;
+            border: 1px solid #d9ebff;
+            box-shadow: 0 8px 26px rgba(14, 116, 144, 0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 34px rgba(14, 116, 144, 0.12);
+        }
+
+        .subject-card.selected {
+            border-color: #0284c7;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12), 0 16px 34px rgba(14, 116, 144, 0.12);
+        }
+
+        .detail-page {
+            display: none;
+            margin-top: 30px;
+            scroll-margin-top: 120px;
+            background: #ffffff;
+            border: 1px solid #dbeafe;
+            border-radius: 22px;
+            box-shadow: 0 12px 30px rgba(2, 132, 199, 0.08);
+            padding: 28px;
+        }
+
+        .detail-page.active {
+            display: block;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .detail-page-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .detail-page-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            font-size: 26px;
+        }
+
+        .detail-page h3 {
+            font-size: 32px;
+            color: #0f172a;
+            margin: 0;
+        }
+
+        .detail-page .subtitle {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .detail-page .chapter-box {
+            background: #f8fbff;
+            border: 1px solid #dbeafe;
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 18px;
+        }
+
+        .detail-page .chapter-box h4 {
+            color: #0369a1;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .detail-page .chapter-box p,
+        .detail-page .chapter-box li {
+            color: #334155;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .detail-page .chapter-box ul {
+            margin-left: 20px;
+        }
+
+        .topic-link {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            border: 1px solid #dbeafe;
+            border-radius: 12px;
+            background: #f8fbff;
+            color: #0f172a;
+            font: inherit;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+
+        .topic-link:hover {
+            background: #eaf6ff;
+            border-color: #7dd3fc;
+            transform: translateY(-2px);
+        }
+
+        .topic-link i {
+            color: #0284c7;
+            flex: 0 0 auto;
+        }
+
+        .topic-diagram {
+            display: block;
+            width: auto;
+            max-width: min(760px, 100%);
+            max-height: 320px;
+            object-fit: contain;
+            margin: 18px auto 0;
+            border: 1px solid #dbeafe;
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        .topic-diagram-sea-land {
+            width: 300px;
+            height: 410px;
+            max-height: none;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        .weather-table-wrap {
+            overflow-x: auto;
+            margin-top: 18px;
+            border: 1px solid #dbeafe;
+            border-radius: 10px;
+        }
+
+        .weather-table {
+            width: 100%;
+            min-width: 620px;
+            border-collapse: collapse;
+            background: #fff;
+            font-size: 14px;
+        }
+
+        .weather-table th,
+        .weather-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #dbeafe;
+            text-align: left;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .weather-table th {
+            background: #eaf6ff;
+            color: #075985;
+            font-weight: 800;
+        }
+
+        .weather-table tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .weather-event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 8px 22px;
+            margin-top: 18px;
+        }
+
+        .weather-event {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid #dbeafe;
+        }
+
+        .weather-event > div {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .weather-event-image {
+            display: block;
+            width: auto;
+            max-width: 104px;
+            max-height: 88px;
+            object-fit: contain;
+            margin-left: auto;
+            border-radius: 8px;
+        }
+
+        .weather-event-icon {
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            flex: 0 0 40px;
+            border-radius: 10px;
+            background: #e0f2fe;
+            color: #0284c7;
+            font-size: 18px;
+        }
+
+        .weather-event h4 {
+            margin: 0 0 5px;
+            color: #075985;
+            font-size: 16px;
+        }
+
+        .weather-event p {
+            margin: 0;
+            color: #334155;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .weather-group,
+        .weather-info-group {
+            margin-top: 24px;
+            padding-top: 18px;
+            border-top: 1px solid #dbeafe;
+        }
+
+        .weather-group h4,
+        .weather-info-group h4 {
+            margin: 0 0 8px;
+            color: #075985;
+            font-size: 18px;
+        }
+
+        .weather-group > p,
+        .weather-info-group > p {
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        .weather-info-group ul {
+            margin: 10px 0 0 20px;
+            color: #334155;
+            line-height: 1.7;
+        }
+
+        .source-note {
+            margin-top: 22px;
+            padding-top: 14px;
+            border-top: 1px solid #dbeafe;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        /*
+        .back-link {
+            display: inline-flex;
+                subtitle: 'Fen Bilimleri konu özetleri ve sınavda işine yarayacak temel bilgiler.',
+                topics: [
+            margin-top: 24px;
+                        heading: 'Mevsimlerin Oluşumu ve Dünya’nın Hareketleri',
+                        sections: [
+                            {
+                                heading: 'Eksen Eğikliği (23°27′)',
+                                text: 'Dünya’nın dönme ekseni, yörünge düzlemine göre 23°27′ eğiktir. Mevsimlerin oluşmasında eksen eğikliği ve Dünya’nın Güneş etrafındaki dolanma hareketi birlikte etkilidir.',
+                                bullets: ['Eksen eğikliği yıl boyunca sabit kalır.', 'Aynı anda farklı yarım kürelerde farklı mevsimler yaşanabilir.', 'Güneş ışınlarının geliş açısı ve gece-gündüz süreleri yıl içinde değişir.'],
+                                image: './assets/images.jpg',
+                                imageAlt: 'Dünya’nın dönme ekseni ve yörünge düzlemi arasındaki eğiklik'
+                            },
+                            {
+                                heading: 'Eksen Eğikliği Olmasaydı',
+                                text: 'Dünya’nın dönme ekseni yörünge düzlemine dik olsaydı, Güneş ışınlarının geliş açısı yıl boyunca aynı enlemlerde değişmeden kalırdı.',
+                                bullets: ['Mevsimler oluşmazdı.', 'Gece ve gündüz süreleri yıl boyunca eşit, yaklaşık 12 saat olurdu.', 'Öğle vakti gölge boyları yıl içinde değişmezdi.']
+                            },
+                            {
+                                heading: 'Birim Yüzeye Düşen Enerji ve Isınma',
+                                text: 'Güneş ışınlarının düşme açısı, enerjinin yeryüzündeki dağılışını etkiler. Dik gelen ışınlar daha dar bir alana, eğik gelen ışınlar daha geniş bir alana yayılır.',
+                                bullets: ['Dik veya dike yakın ışınlarda birim yüzeye düşen enerji artar; öğle vakti gölge boyu kısalır.', 'Eğik ışınlarda enerji daha geniş alana yayılır ve birim yüzeye düşen enerji azalır; öğle vakti gölge boyu uzar.'],
+                                image: './assets/images (1).jpg',
+                                imageAlt: 'Güneş ışınlarının Dünya’ya geliş açısı ve aydınlanan bölgeler'
+                            },
+                            {
+                                heading: 'Dolanma Hareketi ve Elips Yörünge',
+                                text: 'Dünya, Güneş çevresinde elips biçimli bir yörüngede dolanır. Dünya’nın Güneş’e yaklaşıp uzaklaşması mevsimlerin temel nedeni değildir; belirleyici olan eksen eğikliğiyle birlikte Güneş ışınlarının geliş açısıdır.',
+                                bullets: ['Dünya Güneş’e yaklaşık 3 Ocak’ta en yakın konumdayken Kuzey Yarım Küre kış mevsimini yaşar.', 'Dünya Güneş’e yaklaşık 4 Temmuz’da en uzak konumdayken Kuzey Yarım Küre yaz mevsimini yaşar.'],
+                                image: './assets/Mevsimlerin-Olusumu-Ozel-Tarihler.jpg',
+                                imageAlt: 'Dünya’nın yörüngesinde mevsimlerin ve önemli tarihlerin gösterimi'
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-weight: 700;
+            cursor: pointer;
+                        heading: 'Yılın Dört Kritik Tarihi ve Ekinokslar',
+                        sections: [
+                            {
+                                heading: '21 Haziran: Yaz Gün Dönümü',
+                                text: 'Güneş ışınları Yengeç Dönencesi’ne dik düşer. Kuzey Yarım Küre’de yaz, Güney Yarım Küre’de kış başlar.',
+                                bullets: ['Kuzey Yarım Küre’de yılın en uzun gündüzü, Güney Yarım Küre’de en uzun gecesi yaşanır.', 'Bu tarihten sonra Kuzey Yarım Küre’de gündüzler kısalmaya başlar.'],
+                                image: './assets/images (3).jpg',
+                                imageAlt: 'Dünya’nın 21 Haziran tarihindeki konumu'
+                            },
+                            {
+                                heading: '21 Aralık: Kış Gün Dönümü',
+                                text: 'Güneş ışınları Oğlak Dönencesi’ne dik düşer. Kuzey Yarım Küre’de kış, Güney Yarım Küre’de yaz başlar.',
+                                bullets: ['Kuzey Yarım Küre’de yılın en uzun gecesi, Güney Yarım Küre’de en uzun gündüzü yaşanır.', 'Bu tarihten sonra Kuzey Yarım Küre’de gündüzler uzamaya başlar.'],
+                                image: './assets/images (2).jpg',
+                                imageAlt: 'Dünya’nın 21 Aralık tarihindeki konumu'
+                            },
+                            {
+                                heading: '21 Mart ve 23 Eylül: Ekinokslar',
+                                text: 'Güneş ışınları Ekvator’a dik düşer. Her iki yarım kürede gece ve gündüz süreleri yaklaşık 12 saat eşit olur.',
+                                bullets: ['21 Mart’ta Kuzey Yarım Küre’de ilkbahar, Güney Yarım Küre’de sonbahar başlar.', '23 Eylül’de Kuzey Yarım Küre’de sonbahar, Güney Yarım Küre’de ilkbahar başlar.'],
+                                image: './assets/images (6).jpg',
+                                imageAlt: '21 Mart, 21 Haziran, 23 Eylül ve 21 Aralık tarihlerinin karşılaştırması'
+                            }
+                        ]
+                    },
+                    {
+                        heading: 'İklim ve Hava Olayları',
+                        sections: [
+                            {
+                                heading: 'İklim ile Hava Olayları Arasındaki Farklar',
+                                text: 'Hava olayları kısa süreli ve dar alanlı atmosfer değişimleridir. İklim ise bir bölgedeki hava olaylarının uzun yıllar boyunca gözlenen genel özellikleridir.',
+                                bullets: [],
+                                comparisonTable: {
+                                    headers: ['Özellik', 'Hava Olayları', 'İklim'],
+                                    rows: [
+                                        ['Kapsam / Alan', 'Dar alanlarda; mahalle, ilçe veya şehirde görülür.', 'Geniş coğrafi bölgelerin genel özelliklerini anlatır.'],
+                                        ['Zaman / Süre', 'Kısa sürelidir; saatler veya günler içinde değişebilir.', 'En az 30 yıllık gözlem ve ölçümlerin genel değerlendirmesidir.'],
+                                        ['Kesinlik', 'Tahmine dayanır; kısa vadede değişebilir.', 'Uzun dönemli ve görece kararlı özellikleri belirtir.'],
+                                        ['Bilim Dalı', 'Meteoroloji', 'Klimatoloji (iklim bilimi)'],
+                                        ['Uzman', 'Meteorolog', 'Klimatolog (iklim bilimci)'],
+                                        ['Örnekler', 'Yağmur, kar, dolu, sis, çiğ, kırağı ve rüzgâr.', 'Akdeniz, karasal, çöl ve kutup iklimi.']
+                                    ]
+                                }
+                            },
+                            {
+                                heading: 'Gökyüzüne Yakın Hava Olayları',
+                                text: 'Bulutlarda gerçekleşen yoğuşma veya donma sonucunda oluşan yağış türleridir.',
+                                bullets: [],
+                                events: [
+                                    { title: 'Yağmur', icon: 'fa-cloud-rain', text: 'Su buharı soğuyup yoğuşarak su damlacıklarına dönüşür; damlalar ağırlaşınca sıvı hâlde yeryüzüne düşer.' },
+                                    { title: 'Kar', icon: 'fa-snowflake', text: 'Bulutlardaki su, sıcaklık donma noktasının altına indiğinde buz kristallerine dönüşür ve kar taneleri hâlinde düşer.' },
+                                    { title: 'Dolu', icon: 'fa-cloud-showers-heavy', text: 'Güçlü hava akımları su damlalarını bulut içinde yukarı taşır. Damlalar donup katmanlar hâlinde büyüyerek buz taneleri olarak düşer.' }
+                                ]
+                            },
+                            {
+                                heading: 'Yeryüzüne Yakın Hava Olayları',
+                                text: 'Su buharının yeryüzüne yakın soğuk hava veya yüzeylerle karşılaşmasıyla oluşurlar.',
+                                bullets: [],
+                                events: [
+                                    { title: 'Çiğ', icon: 'fa-droplet', text: 'Serin gecelerde su buharının bitki, taş ve benzeri soğuk yüzeylerde yoğuşarak su damlacıkları oluşturmasıdır.' },
+                                    { title: 'Kırağı', icon: 'fa-icicles', text: 'Soğuk yüzeylerde su buharının sıvılaşmadan doğrudan buz kristallerine dönüşmesidir; genellikle sıcaklık 0 °C’nin altındayken görülür.' },
+                                    { title: 'Sis', icon: 'fa-smog', text: 'Yeryüzüne yakın su buharının yoğuşup havada asılı kalmasıdır. Yere inmiş bulut gibi düşünülebilir ve görüş mesafesini azaltır.' }
+                                ]
+                            },
+                            {
+                                heading: 'Meteoroloji ve Meteorolog',
+                                text: 'Meteoroloji; sıcaklık, rüzgâr, basınç, yağmur ve kar gibi atmosfer olaylarını gözlemleyen, değişimleri inceleyen ve kısa vadeli hava tahminleri hazırlayan bilim dalıdır.',
+                                bullets: ['Meteorolog, hava olaylarını inceleyen ve tahmin raporlarını hazırlayan uzmandır.', 'Balon, uydu, radar ve yer istasyonlarından gelen ölçümleri değerlendirirler.', 'Çalışmalar günlük veya birkaç günlük hava değişimlerine odaklanır.']
+                            },
+                            {
+                                heading: 'Klimatoloji ve Klimatolog',
+                                text: 'Klimatoloji, bir bölgedeki hava olaylarının en az 30 yıllık gözlem ve ölçümlere dayanan genel özelliklerini ve iklim tiplerini inceler.',
+                                bullets: ['Klimatolog, uzun yıllara ait meteorolojik verileri analiz ederek iklim özelliklerini ve iklim haritalarını ortaya çıkaran uzmandır.', 'Günlük hava tahmini yerine uzun dönemli eğilimleri, kuraklık döngülerini ve iklim değişikliğini inceler.', 'Örnek: “Akdeniz ikliminde yazlar sıcak ve kurak geçer.”']
+                            }
+                        ]
+                    },
+                    {
+                        heading: 'Atmosfer Basıncı ve Rüzgârın Oluşumu',
+                        sections: [
+                            {
+                                heading: 'Alçak Basınç Alanı',
+                                text: 'Isınan hava genleşir, yoğunluğu azalır ve yükselir. Yükselen hava nedeniyle yeryüzündeki basınç azalır.',
+                                bullets: ['Alçak basınç alanlarında bulutlanma ve yağış olasılığı artabilir.']
+                            },
+                            {
+                                heading: 'Yüksek Basınç Alanı',
+                                text: 'Soğuyan hava yoğunlaşır, ağırlaşır ve alçalır. Yeryüzüne doğru çöken hava yüksek basınç oluşturur.',
+                                bullets: ['Yüksek basınç alanlarında hava çoğunlukla açık ve bulutsuzdur.']
+                            },
+                            {
+                                heading: 'Rüzgârın Esiş Yönü',
+                                text: 'Rüzgâr, yatay yönde yüksek basınç alanından alçak basınç alanına doğru gerçekleşen hava akımıdır.',
+                                bullets: ['İki bölge arasındaki basınç farkı arttıkça rüzgârın şiddeti de artar.']
+                            }
+                        ]
+        */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+            background: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-img-icon {
+            font-size: 32px;
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .mat-theme .card-img-icon { background: #e0f2fe; color: #0284c7; }
+        .fen-theme .card-img-icon { background: #dcfce7; color: #16a34a; }
+        .turkce-theme .card-img-icon { background: #fee2e2; color: #dc2626; }
+        .inkilap-theme .card-img-icon { background: #fef3c7; color: #d97706; }
+        .ingilizce-theme .card-img-icon { background: #f3e8ff; color: #9333ea; }
+        .din-theme .card-img-icon { background: #ccfbf1; color: #0d9488; }
+
+        .card-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .subject-card h3 { font-size: 20px; margin-bottom: 10px; color: #0f172a; }
+        .subject-card p { font-size: 13px; color: #64748b; line-height: 1.6; margin-bottom: 20px; }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: #0284c7;
+        }
+
+        .detail-box {
+            display: none;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-left: 5px solid #0284c7;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 12px;
+        }
+
+        .detail-header { font-weight: 800; color: #0284c7; margin-bottom: 8px; font-size: 16px; }
+
+        .lesson-section h3 {
+            color: #0369a1;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .lesson-section p,
+        .lesson-section li {
+            color: #334155;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .lesson-section ul {
+            margin: 12px 0 14px 22px;
+        }
+
+        .formula-box {
+            background: #f8fafc;
+            border-left: 4px solid #0284c7;
+            padding: 15px 18px;
+            border-radius: 10px;
+            margin: 18px 0;
+            font-weight: 700;
+            color: #0f172a;
+            overflow-x: auto;
+        }
+
+        .lesson-section sup,
+        .formula-box sup,
+        .question-box sup,
+        .lesson-section sub,
+        .formula-box sub,
+        .question-box sub {
+            font-size: 0.7em;
+            vertical-align: super;
+            line-height: 0;
+        }
+
+        .question-box {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin-top: 18px;
+        }
+
+        .question-box h4 {
+            color: #075985;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .question-box ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .question-box li {
+            background: #fff;
+            border: 1px solid #dbeafe;
+            border-radius: 10px;
+            padding: 10px 12px;
+            color: #0f172a;
+        }
+
+        .answer-tag {
+            margin-top: 12px;
+            display: inline-block;
+            background: #dcfce7;
+            color: #166534;
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        /* CALCULATOR SEKSİYONU */
+        .calculator-section { background: #0f172a; padding: 70px 8%; color: white; }
+        .calculator-section {
+            display: none;
+        }
+
+        .calculator-section.active {
+            display: block;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        body.calculator-open > *:not(#hesaplama) {
+            display: none !important;
+        }
+        .white { color: white !important; }
+        .white-sub { color: #94a3b8 !important; }
+
+        .calc-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            padding: 35px;
+            border-radius: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .column-title {
+            font-size: 16px;
+            color: #38bdf8;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .inputs input {
+            width: 50px;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .calc-btn {
+            width: 100%;
+            padding: 14px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .calc-btn:hover { background: #059669; }
+
+        .calc-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            background: rgba(14, 165, 233, 0.12);
+            color: #7dd3fc;
+            border: 1px solid rgba(125, 211, 252, 0.35);
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .result-display {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed #334155;
+            text-align: center;
+        }
+
+        .score-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: #34d399;
+        }
+
+        .nets-detail {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        /* HAKKIMIZDA & FOOTER */
+        .tactics-page {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 36px 8% 60px;
+            background: #f4f9ff;
+        }
+
+        .tactics-page.active {
+            display: block;
+        }
+
+        body.tactics-open > *:not(#taktikler) {
+            display: none !important;
+        }
+
+        .tactics-container {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .tactics-header {
+            margin: 22px 0 28px;
+        }
+
+        .tactics-header h2 {
+            margin-bottom: 12px;
+            color: #0f172a;
+            font-size: 32px;
+        }
+
+        .tactics-header p {
+            max-width: 780px;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .tactics-section {
+            padding: 24px 0;
+            border-top: 1px solid #cbd5e1;
+        }
+
+        .tactics-section h3 {
+            margin-bottom: 10px;
+            color: #075985;
+            font-size: 22px;
+        }
+
+        .tactics-steps,
+        .tactics-subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0 30px;
+        }
+
+        .tactics-steps {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .tactics-steps li {
+            display: grid;
+            grid-template-columns: 38px minmax(0, 1fr);
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid #dbeafe;
+        }
+
+        .tactics-number {
+            color: #0284c7;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .tactics-steps h4,
+        .tactic-subject h4 {
+            margin: 0 0 6px;
+            color: #0f172a;
+            font-size: 16px;
+        }
+
+        .tactics-steps p,
+        .tactic-subject p {
+            margin: 0;
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .tactic-subject {
+            padding: 16px 0;
+            border-bottom: 1px solid #dbeafe;
+        }
+
+        .tactic-subject h4 i {
+            width: 24px;
+            margin-right: 6px;
+            color: #0284c7;
+        }
+
+        .tactics-source {
+            padding-top: 18px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .tactics-source a {
+            color: #0369a1;
+            font-weight: 700;
+        }
+
+        .about-section {
+            display: none;
+            padding: 80px 8%;
+            text-align: center;
+        }
+
+        .about-section.active {
+            display: block;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            overflow-y: auto;
+            background: #f4f9ff;
+        }
+
+        body.about-open > *:not(#hakkimizda) {
+            display: none !important;
+        }
+        .about-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        .about-icon { font-size: 45px; color: #0284c7; margin-bottom: 15px; }
+        .about-card h2 { font-size: 24px; margin-bottom: 15px; }
+        .about-card p { color: #64748b; font-size: 15px; line-height: 1.7; margin-bottom: 20px; }
+        .author-tag { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; }
+
+        footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            background: #0f172a;
+            color: #64748b;
+            text-align: center;
+            padding: 22px 8%;
+            font-size: 13px;
+            border-top: 1px solid #1e293b;
+        }
+
+        .version-label {
+            color: #64748b;
+            font-size: 10px;
+        }
+
+        .footer-contact {
+            display: grid;
+            gap: 4px;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .footer-contact a {
+            color: #7dd3fc;
+            text-decoration: none;
+        }
+
+        footer p { margin: 0; }
+
+        @media (max-width: 768px) {
+            .calc-grid { grid-template-columns: 1fr; }
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero-buttons { justify-content: center; }
+            .section-heading-row { flex-direction: column; gap: 8px; }
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 6%;
+            }
+            .header-logos { justify-content: center; }
+            .navbar nav { width: 100%; }
+            .navbar ul {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 8px 14px;
+            }
+            .navbar a { font-size: 12px; }
+            .tactics-page { padding: 24px 6% 44px; }
+            .tactics-header h2 { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- RESMİ HEADER & LOGOLAR -->
+    <header class="navbar">
+        <div class="header-logos">
+            <img class="netmatik-logo" src="./assets/Gemini_Generated_Image_-Photoroom.png" alt="NetMatik Logosu">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#anasayfa" class="active"><i class="fa-solid fa-house"></i> Ana Sayfa</a></li>
+                <li><a href="#dersler"><i class="fa-solid fa-book-open"></i> Ders Notları</a></li>
+                <li><a href="#taktikler"><i class="fa-solid fa-lightbulb"></i> Soru Taktikleri</a></li>
+                <li><a href="#hesaplama"><i class="fa-solid fa-calculator"></i> LGS Puan Hesapla</a></li>
+                <li><a href="#hakkimizda"><i class="fa-solid fa-user-graduate"></i> Hakkımda</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO / BANNER ALANI -->
+    <section id="anasayfa" class="hero-banner">
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="hero-tag"><i class="fa-solid fa-fire"></i> LGS 2026 DERECE REHBERİ</span>
+                <h1>İstediğin Liseyi Kazan</h1>
+                <p>Ders notları, yeni nesil soru taktikleri ve 6 ders için LGS puan hesaplama aracı.</p>
+                <div class="hero-buttons">
+                    <a href="#dersler" class="btn-main"><i class="fa-solid fa-rocket"></i> Notları İncele</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DERS KARTLARI SEKSİYONU -->
+    <section id="dersler" class="main-container">
+        <div class="section-heading-row">
+            <h2 class="section-heading"><span>LGS 8. Sınıf</span> Ders Notları & Taktikler</h2>
+            <div class="curriculum-mark">
+                <img src="./assets/meblogo.png" alt="MEB Logosu">
+                <span>MEB Müfredatıyla Uyumlu</span>
+            </div>
+        </div>
+        <p class="section-sub">Ders kartlarına tıklayarak özel sınav taktiklerine ulaşabilirsin. Sözel derslerin tüm konu içerikleri ilerleyen güncellemelerde eklenecek.</p>
+
+        <div class="cards-grid">
+            
+            <div class="subject-card mat-theme" data-subject="matematik">
+                <div class="card-header">
+                    <i class="fa-solid fa-calculator card-img-icon"></i>
+                    <span class="card-tag">20 Soru</span>
+                </div>
+                <h3>Matematik</h3>
+                <div class="card-footer">
+                    <span>Notları Oku</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="subject-card fen-theme" data-subject="fen">
+                <div class="card-header">
+                    <i class="fa-solid fa-flask-vial card-img-icon"></i>
+                    <span class="card-tag">20 Soru</span>
+                </div>
+                <h3>Fen Bilimleri</h3>
+                <div class="card-footer">
+                    <span>Notları Oku</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="subject-card turkce-theme" data-subject="turkce">
+                <div class="card-header">
+                    <i class="fa-solid fa-pen-nib card-img-icon"></i>
+                    <span class="card-tag">20 Soru</span>
+                </div>
+                <h3>Türkçe</h3>
+                <div class="card-footer">
+                    <span>Notları Oku</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="subject-card inkilap-theme" data-subject="inkilap">
+                <div class="card-header">
+                    <i class="fa-solid fa-landmark card-img-icon"></i>
+                    <span class="card-tag">10 Soru</span>
+                </div>
+                <h3>T.C. İnkılap Tarihi</h3>
+                <div class="card-footer">
+                    <span>Notları Oku</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="subject-card ingilizce-theme" data-subject="ingilizce">
+                <div class="card-header">
+                    <i class="fa-solid fa-earth-americas card-img-icon"></i>
+                    <span class="card-tag">10 Soru</span>
+                </div>
+                <h3>İngilizce</h3>
+                <div class="card-footer">
+                    <span>Notları Oku</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="subject-card din-theme" data-subject="din">
+                <div class="card-header">
+                    <i class="fa-solid fa-kaaba card-img-icon"></i>
+                    <span class="card-tag">10 Soru</span>
+                </div>
+                <h3>Din Kültürü</h3>
+                <div class="card-footer">
+                    <span>Notları Oku</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="subject-detail-view" class="detail-page">
+        <button id="back-to-cards" class="back-link" type="button">← Kartlara Dön</button>
+        <div class="detail-page-header">
+            <div id="detail-icon" class="detail-page-icon"></div>
+            <h3 id="detail-title">Seçili Ders</h3>
+        </div>
+        <div id="detail-content"></div>
+    </section>
+
+    <section id="taktikler" class="tactics-page">
+        <div class="tactics-container">
+            <button id="back-from-tactics" class="back-link" type="button">← Ana Sayfaya Dön</button>
+            <header class="tactics-header">
+                <span class="hero-tag"><i class="fa-solid fa-lightbulb"></i> LGS ÇÖZÜM REHBERİ</span>
+                <h2>Yeni Nesil Soru Taktikleri</h2>
+                <p>Metin, tablo, grafik ve günlük yaşam senaryolarında verilen bilgileri ayır; sorunun istediğiyle ilişkilendir ve cevabını kanıtla.</p>
+            </header>
+
+            <section class="tactics-section" aria-labelledby="genel-taktikler-baslik">
+                <h3 id="genel-taktikler-baslik">Her Soruda Uygula</h3>
+                <ol class="tactics-steps">
+                    <li><span class="tactics-number">01</span><div><h4>Soru kökünü netleştir</h4><p>Önce senden ne istendiğini bul. “Değildir”, “ulaşılamaz” ve “kesinlikle” gibi belirleyici sözcükleri işaretle.</p></div></li>
+                    <li><span class="tactics-number">02</span><div><h4>Görseli doğru oku</h4><p>Grafiğin başlığını, eksenlerini, birimlerini ve açıklama işaretlerini kontrol et; yalnızca çizginin şekline bakarak karar verme.</p></div></li>
+                    <li><span class="tactics-number">03</span><div><h4>Veri ile yorumu ayır</h4><p>Soruda açıkça verilenleri, çıkarım yapman gerekenlerden ayır. Her seçeneği metin veya görseldeki kanıtla karşılaştır.</p></div></li>
+                    <li><span class="tactics-number">04</span><div><h4>İlişkiyi modelle</h4><p>Gerekirse kısa not, tablo, çizim veya denklem kullan. Uzun senaryoyu küçük ve kontrol edilebilir adımlara böl.</p></div></li>
+                    <li><span class="tactics-number">05</span><div><h4>Seçeneği doğrula</h4><p>İşlemi ve birimi kontrol et; seçeneğin sorudaki tüm koşulları karşıladığından emin ol. Bir koşulu bozan seçeneği ele.</p></div></li>
+                    <li><span class="tactics-number">06</span><div><h4>Zamanı yönet</h4><p>Bir soruda gereğinden fazla takılırsan işaretleyip ilerle; kalan sorulardan sonra geri dön.</p></div></li>
+                </ol>
+            </section>
+
+            <section class="tactics-section" aria-labelledby="ders-taktikleri-baslik">
+                <h3 id="ders-taktikleri-baslik">Derslere Göre</h3>
+                <div class="tactics-subject-grid">
+                    <article class="tactic-subject"><h4><i class="fa-solid fa-calculator"></i>Matematik</h4><p>Verilen sayıları ve ilişkileri ayır; işlemi kurmadan önce şekil, tablo veya denklemle göster. Sonucu birim ve yaklaşık değerle kontrol et.</p></article>
+                    <article class="tactic-subject"><h4><i class="fa-solid fa-flask-vial"></i>Fen Bilimleri</h4><p>Deney sorularında değiştirilen, ölçülen ve sabit tutulan değişkenleri bul. Tablo ve grafiklerde değerleri aynı koşullar arasında karşılaştır.</p></article>
+                    <article class="tactic-subject"><h4><i class="fa-solid fa-book-open"></i>Türkçe</h4><p>Soru kökünün istediği anlamı belirle; seçenekleri metindeki düşünce ve kanıtlarla karşılaştır. Metnin söylemediği bilgiyi çıkarım diye ekleme.</p></article>
+                    <article class="tactic-subject"><h4><i class="fa-solid fa-landmark"></i>İnkılap Tarihi</h4><p>Olayları zaman sırasına koy; neden-sonuç ilişkisini ve metnin yazıldığı dönemi dikkate al. Bugünün koşullarını geçmişe doğrudan taşıma.</p></article>
+                    <article class="tactic-subject"><h4><i class="fa-solid fa-earth-americas"></i>İngilizce</h4><p>Diyalog veya metnin bağlamını bul; zaman, olumsuzluk ve bağlaçları takip et. Bilmediğin her kelimeyi çevirmek yerine cümlenin genel anlamını kullan.</p></article>
+                    <article class="tactic-subject"><h4><i class="fa-solid fa-kaaba"></i>Din Kültürü</h4><p>Senaryodaki davranış, niyet ve sonucu ayır; soruda ölçülen kavramı bulup seçenekleri bu kavrama göre değerlendir.</p></article>
+                </div>
+            </section>
+
+            <p class="tactics-source">Resmî örnek soru ve ölçme-değerlendirme kaynakları: <a href="https://odsgm.meb.gov.tr/" target="_blank" rel="noopener noreferrer">MEB Ölçme, Değerlendirme ve Sınav Hizmetleri Genel Müdürlüğü</a></p>
+        </div>
+    </section>
+
+    <!-- 6 DERS TAM MODÜLLÜ RENKLİ PUAN HESAPLAMA -->
+    <section id="hesaplama" class="calculator-section">
+        <div class="main-container">
+            <h2 class="section-heading white">LGS Puan & Net Hesaplama Motoru</h2>
+            <p class="section-sub white-sub">Girdiğin doğru ve yanlışlara göre MEB katsayılarıyla anında hesaplar.</p>
+            <button id="back-to-notes" class="calc-back-link" type="button">← Ana Sayfaya Dön</button>
+
+            <div class="calc-card">
+                <div class="calc-grid">
+                    
+                    <!-- SÖZEL BÖLÜM -->
+                    <div class="calc-column">
+                        <h3 class="column-title"><i class="fa-solid fa-font"></i> Sözel Bölüm Dersleri</h3>
+                        
+                        <div class="input-row">
+                            <span>Türkçe (20 S)</span>
+                            <div class="inputs">
+                                <input type="number" id="turk-d" placeholder="D" min="0" max="20">
+                                <input type="number" id="turk-y" placeholder="Y" min="0" max="20">
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <span>İnkılap Tarihi (10 S)</span>
+                            <div class="inputs">
+                                <input type="number" id="ink-d" placeholder="D" min="0" max="10">
+                                <input type="number" id="ink-y" placeholder="Y" min="0" max="10">
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <span>Din Kültürü (10 S)</span>
+                            <div class="inputs">
+                                <input type="number" id="din-d" placeholder="D" min="0" max="10">
+                                <input type="number" id="din-y" placeholder="Y" min="0" max="10">
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <span>İngilizce (10 S)</span>
+                            <div class="inputs">
+                                <input type="number" id="ing-d" placeholder="D" min="0" max="10">
+                                <input type="number" id="ing-y" placeholder="Y" min="0" max="10">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SAYISAL BÖLÜM -->
+                    <div class="calc-column">
+                        <h3 class="column-title"><i class="fa-solid fa-shapes"></i> Sayısal Bölüm Dersleri</h3>
+                        
+                        <div class="input-row">
+                            <span>Matematik (20 S)</span>
+                            <div class="inputs">
+                                <input type="number" id="mat-d" placeholder="D" min="0" max="20">
+                                <input type="number" id="mat-y" placeholder="Y" min="0" max="20">
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <span>Fen Bilimleri (20 S)</span>
+                            <div class="inputs">
+                                <input type="number" id="fen-d" placeholder="D" min="0" max="20">
+                                <input type="number" id="fen-y" placeholder="Y" min="0" max="20">
+                            </div>
+                        </div>
+
+                        <button onclick="puanHesapla()" class="calc-btn"><i class="fa-solid fa-chart-pie"></i> Puanımı Hesapla</button>
+                    </div>
+
+                </div>
+
+                <!-- SONUÇ EKRANI -->
+                <div class="result-display">
+                    <div id="sonuc" class="score-text">Tahmini LGS Puanınız: ---</div>
+                    <div id="netler-detay" class="nets-detail"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HAKKIMIZDA / İMZA -->
+    <section id="hakkimizda" class="about-section">
+        <button id="back-from-about" class="back-link" type="button">← Ana Sayfaya Dön</button>
+        <div class="about-card">
+            <i class="fa-solid fa-user-astronaut about-icon"></i>
+            <h2>Hakkımda</h2>
+            <p>NetMatik, 8. sınıf LGS öğrencilerinin sınav maratonunda ihtiyaç duyduğu nitelikli ders özetlerini, MEB taktiklerini ve puan hesaplama sistemini tek bir çatı altında toplayan bağımsız ve ücretsiz bir platformdur.</p>
+            <div class="author-tag">Platform Kurucusu & Geliştirici: <strong>Bartu Emre Taşcı</strong></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-contact">
+            <span>Hazırlayan: <strong>Bartu Emre Taşcı</strong></span>
+            <a href="mailto:bartuemre20122012@gmail.com">bartuemre20122012@gmail.com</a>
+        </div>
+        <p>&copy; 2026 NetMatik. Tüm Hakları Saklıdır.</p>
+        <span class="version-label">Versiyon 1.0</span>
+    </footer>
+
+    <!-- JAVASCRIPT KODLARI -->
+    <script>
+        const lessonData = [
+            {
+                title: '1. Bölüm: Çarpanlar ve Katlar',
+                intro: "LGS’de her yıl istisnasız karşımıza çıkan bu konu, aslında matematiğin temel yapı taşıdır. Bir konuyu yüzeysel geçmek NetMatik felsefesine uymaz; bu yüzden en temelden, yeni nesil soru mantığına kadar her detayı inceleyeceğiz.",
+                sections: [
+                    {
+                        heading: '1. Bir Doğal Sayının Çarpanları',
+                        body: 'Bir pozitif tam sayıyı kalansız olarak bölebilen pozitif tam sayılara o sayının çarpanları veya bölenleri denir. Matematikte çarpan ile bölen kelimesi aynı anlamı taşır. Bu konu soru çözerken kaçırılan en önemli detay, sayının tüm bölenlerini küçükten büyüğe yazıp baştan-sondan kontrol etmektir. Bu yöntem “gökkuşağı yöntemi” diye bilinir. Çünkü baş ve sondaki sayı çiftleri aynı çarpımı üretir. Bir sayının çarpanlarını bulmak, çarpan sayısını bulmak, asal sayı ve EBOB-EKOK mantığını öğrenmek için temel oluşturur.',
+                        examples: [
+                            '60 sayısının pozitif tam sayı çarpanlarını bulalım: 1×60, 2×30, 3×20, 4×15, 5×12, 6×10. Çarpanlar: 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60. Toplam 12 adet pozitif çarpanı vardır.',
+                            'Tam kare sayıların çarpan yapısı farklıdır. 36 = 1×36, 2×18, 3×12, 4×9, 6×6. Burada 6 bir kez yazılır. Bu yüzden tam kare sayıların pozitif çarpan sayısı tek sayıdır.'
+                        ],
+                        formula: 'Pozitif Çarpan Sayısı = sayının çarpan çiftleri kadar işaretlenir; tam karelerde tek sayı oluşur.'
+                    },
+                    {
+                        heading: '2. Asal Sayılar ve Asal Çarpanlara Ayırma',
+                        body: "Sadece 1’e ve kendisine kalansız bölünebilen 1’den büyük doğal sayılara asal sayı denir. 2 en küçük asal sayıdır; 2’den başka çift asal sayı yoktur. 1 asal sayı değildir. LGS’de asal sayı bilgisi, asal çarpanlara ayırma ve EBOB-EKOK sorularında çok kritik hale gelir. Asal çarpanlara ayırma işlemi; sayıyı en küçük asal sayıdan başlayarak böler, sonra sırayla 3, 5, 7 gibi asal sayılara geçer. Sonuç 1 olana kadar işlemi sürdür.",
+                        examples: [
+                            '120 = 2 × 60 = 2 × 2 × 30 = 2 × 2 × 2 × 15 = 2^3 × 3 × 5. Sonuç: 120 = 2^3 × 3 × 5',
+                            'Bir sayının asal çarpanlarına ayrılmış hâli x^a · y^b · z^c ise pozitif çarpan sayısı = (a+1)(b+1)(c+1) formülü kullanılır.'
+                        ],
+                        formula: 'A = x^a · y^b · z^c ise pozitif çarpan sayısı = (a+1)(b+1)(c+1)'
+                    },
+                    {
+                        heading: '3. EBOB ve EKOK',
+                        body: "İki veya daha fazla sayıyı aynı anda kalansız bölebilen en büyük pozitif tam sayıya EBOB denir. Ortak katların en küçüğüne EKOK denir. LGS’de en çok hata yapılan yer, sorunun “bölme mi birleştirme mi” olduğuna karar verememektir. EBOB genelde eşit parçalama, aynı anda paylaşma, eşit boylama ve en büyük ortak ölçü sorularında kullanılır. EKOK ise tekrar birlikte çalışma, aynı anda çalma, ortak onarımı ve birleştirme sorularında kullanılır.",
+                        examples: [
+                            'A = 2^3 · 3^2 · 5 ve B = 2^2 · 3^3 · 7 ise EBOB(A,B) = 2^2 · 3^2 = 36, EKOK(A,B) = 2^3 · 3^3 · 5 · 7.',
+                            'İki sayının çarpımı, EBOB ile EKOK’un çarpımına eşittir: A · B = EBOB(A,B) · EKOK(A,B).'
+                        ],
+                        formula: 'EBOB: ortak olan asal tabanlardan küçük üs seçilir. EKOK: ortak olanlardan büyük üs, ortak olmayan tüm tabanlar alınır.'
+                    }
+                ],
+                questions: [
+                    {
+                        title: 'LGS Tarzı Soru 1',
+                        options: ['A) 6', 'B) 8', 'C) 9', 'D) 12'],
+                        answer: 'Cevap: C) 9. Çünkü 36 nın pozitif çarpanları 1,2,3,4,6,9,12,18,36 dır.'
+                    },
+                    {
+                        title: 'LGS Tarzı Soru 2',
+                        options: ['A) EBOB', 'B) EKOK', 'C) Asal sayı', 'D) Tam kare'],
+                        answer: 'Cevap: A) EBOB. Çünkü eşit uzunlukta parçalar oluşturuluyorsa ortak bölen aranır.'
+                    }
+                ]
+            },
+            {
+                title: '2. Bölüm: Üslü İfadeler',
+                intro: 'Üslü ifadeler LGS matematiğin en kritik konularından biridir. Kuralların mantığını kavramak, sayılarla oynarken hatayı azaltır. Özellikle negatif sayıların parantezli ve parantezsiz durumları, negatif üs, üslerin çarpımı ve bölme kuralları sıkça karşımıza çıkar.',
+                sections: [
+                    {
+                        heading: '1. Tam Sayıların Kuvvetleri ve İşaret Tuzakları',
+                        body: "Bir sayının kendisiyle kaç kez çarpılacağını gösteren ifadelere üs denir. Pozitif sayıların tüm kuvvetleri pozitiftir. Negatif sayıların çift kuvvetleri pozitif, tek kuvvetleri negatiftir. Bu noktada en sık yapılan hata, parantez ve üs ilişkisini karıştırmaktır. (-4)^2 = 16 iken -4^2 = -16 dır. Çünkü üstü yalnızca 4’e ait olan ifade önünde eksi işareti bulunan toplam değerin negatifi olarak değerlendirilir.",
+                        examples: [
+                            '(-3)^4 = 81',
+                            '(-3)^3 = -27',
+                            '-3^4 = -(81) = -81'
+                        ],
+                        formula: 'Negatif sayı ve parantez: (-a)^n; n çift ise pozitif, n tek ise negatiftir.'
+                    },
+                    {
+                        heading: '2. Negatif Kuvvet',
+                        body: 'Negatif üs, sayının ters çevrilmesini ifade eder. Yani a^{-n} = 1/a^n. Bu kuralın mantığı, sayının çok küçük değerler için nasıl ifade edildiğini görmeyi sağlar. Özellikle üslü sayıların düzenli biçimiyle çalışırken bu kural çok önemlidir.',
+                        examples: [
+                            '2^-3 = 1/8',
+                            '(3/5)^-2 = (5/3)^2 = 25/9'
+                        ],
+                        formula: 'a^{-n} = 1 / a^n ve (a/b)^-n = (b/a)^n'
+                    },
+                    {
+                        heading: '3. Üslü İfadelerde Dört İşlem',
+                        body: 'Üslü ifadelerde çarpma, bölme ve kuvvet alma işlemleri için kurallar vardır. Tabanlar aynıysa üsler toplanır, üsler aynıysa tabanlar çarpılır; bölmede ise tabanlar aynıysa üsler çıkarılır. Toplama ve çıkarma işlemlerinde ise hem taban hem de üs aynı olmalıdır. Aksi halde doğrudan işlem yapılamaz.',
+                        examples: [
+                            '5^3 · 5^4 = 5^7',
+                            '2^4 · 3^4 = (2·3)^4 = 6^4',
+                            '10^5 / 2^5 = (10/2)^5 = 5^5',
+                            '4·10^3 + 5·10^3 = (4+5)·10^3 = 9·10^3'
+                        ],
+                        formula: 'a^m · a^n = a^(m+n), a^m / a^n = a^(m−n), (a^m)^n = a^(m·n)'
+                    }
+                ],
+                questions: [
+                    {
+                        title: 'LGS Tarzı Soru 3',
+                        options: ['A) -16', 'B) 16', 'C) -8', 'D) 8'],
+                        answer: 'Cevap: B) 16. Çünkü (-4)^2 = 16.'
+                    },
+                    {
+                        title: 'LGS Tarzı Soru 4',
+                        options: ['A) 1/16', 'B) 16', 'C) 4', 'D) 1/4'],
+                        answer: 'Cevap: A) 1/16. Çünkü 2^-4 = 1/2^4 = 1/16.'
+                    }
+                ]
+            },
+            {
+                title: "3. Bölüm: Bilimsel Gösterim ve 10’un Kuvvetleri",
+                intro: "Bilimsel gösterim, çok büyük ve çok küçük sayıları daha kısa ve okunabilir şekilde yazma yöntemidir. LGS’de bu konusu “terazi taktiği” gibi düşünmek gerekir. Katsayı büyüdükçe üs küçülür; katsayı küçüldükçe üs büyür. Bu yüzden virgül kaydırma işlemi çok önemlidir.",
+                sections: [
+                    {
+                        heading: "1. 10’un Kuvvetleri ve Basamak Sayısı",
+                        body: "Bir sayıyı büyük veya küçük göstermek için 10’un kuvvetleri kullanılır. Örneğin 2 × 10^8 ifadesi 200.000.000 demektir. Basamak sayısını bulmak için sayıyı a × 10^n şeklinde yazmak gerekir. Bu sayede kaç basamaklı olduğu daha hızlı görülür. Özellikle 2 ve 5’in kuvvetleri ile ilgili işlemler oldukça sıklıkla çıkar.",
+                        examples: [
+                            '8^3 × 25^4 = 2^9 × 5^8 = 2 × (2×5)^8 = 2 × 10^8. Bu ifade 9 basamaklıdır.'
+                        ],
+                        formula: 'a × 10^n formunda yazılan sayıda |a| değeri 1 ile 10 arasında olmalıdır.'
+                    },
+                    {
+                        heading: '2. Virgül Kaydırma ve Terazi Taktiği',
+                        body: 'Katsayı ile üs arasında ters orantı vardır. Virgülü sağa kaydırırsan katsayı büyür, üs küçülür; virgülü sola kaydırırsan katsayı küçülür, üs büyür. Bu yüzden her virgül hareketi, üste bir değişiklik olarak yansır. Bu yöntem özellikle 3500 × 10^-4 gibi işlemlerde çok işe yarar.',
+                        examples: [
+                            '3500 × 10^-4 = 3,5 × 10^-1',
+                            '0,0000072 = 7,2 × 10^-6'
+                        ],
+                        formula: 'Virgül sağa: katsayı büyür, üs küçülür. Virgül sola: katsayı küçülür, üs büyür.'
+                    },
+                    {
+                        heading: '3. Bilimsel Gösterim Şartı',
+                        body: 'Bir sayının a × 10^n şeklinde yazılması için katsayının mutlak değeri 1 ile 10 arasında olmalıdır. Yani 1 ≤ |a| < 10 şartı sağlanmalıdır. Bu kuralın dışına çıkarsa ifade bilimsel gösterim değildir. Bu yüzden 72 × 10^-6 gibi ifadeler doğru gösterim değildir; bunlar 7,2 × 10^-5 şeklinde yazılmalıdır.',
+                        examples: [
+                            '0,0000072 = 7,2 × 10^-6',
+                            '450000 = 4,5 × 10^5'
+                        ],
+                        formula: 'Bilimsel gösterim: a × 10^n; 1 ≤ |a| < 10'
+                    }
+                ],
+                questions: [
+                    {
+                        title: 'LGS Tarzı Soru 5',
+                        options: ['A) 4,8 × 10^3', 'B) 4,8 × 10^4', 'C) 48 × 10^3', 'D) 0,48 × 10^4'],
+                        answer: 'Cevap: A) 4,8 × 10^3. Çünkü 4800 = 4,8 × 10^3.'
+                    },
+                    {
+                        title: 'LGS Tarzı Soru 6',
+                        options: ['A) 7,2 × 10^-6', 'B) 72 × 10^-7', 'C) 0,72 × 10^-5', 'D) 7,2 × 10^-5'],
+                        answer: 'Cevap: A) 7,2 × 10^-6. Çünkü 0,0000072 = 7,2 × 10^-6.'
+                    }
+                ]
+            }
+        ];
+
+        function formatPowerText(text) {
+            if (typeof text !== 'string') return text;
+            return text
+                .replace(/(\w|\))\^([\w()+\-]+)/g, '$1<sup>$2</sup>')
+                .replace(/\^\(([^)]+)\)/g, '<sup>($1)</sup>');
+        }
+
+        function renderLessons() {
+            const root = document.getElementById('ders-icerikleri');
+            if (!root) return;
+
+            root.innerHTML = lessonData.map(chapter => `
+                <article class="lesson-chapter">
+                    <h3 class="chapter-title">${chapter.title}</h3>
+                    <p>${formatPowerText(chapter.intro)}</p>
+                    ${chapter.sections.map(section => `
+                        <div class="lesson-section">
+                            <h3>${formatPowerText(section.heading)}</h3>
+                            <p>${formatPowerText(section.body)}</p>
+                            ${section.examples ? `
+                                <ul>
+                                    ${section.examples.map(example => `<li>• ${formatPowerText(example)}</li>`).join('')}
+                                </ul>
+                            ` : ''}
+                            ${section.formula ? `<div class="formula-box">${formatPowerText(section.formula)}</div>` : ''}
+                        </div>
+                    `).join('')}
+                </article>
+            `).join('');
+        }
+
+        function puanHesapla() {
+            // Sözel Dersler
+            let turkD = parseFloat(document.getElementById('turk-d').value) || 0;
+            let turkY = parseFloat(document.getElementById('turk-y').value) || 0;
+            let turkNet = Math.max(0, turkD - (turkY / 3));
+
+            let inkD = parseFloat(document.getElementById('ink-d').value) || 0;
+            let inkY = parseFloat(document.getElementById('ink-y').value) || 0;
+            let inkNet = Math.max(0, inkD - (inkY / 3));
+
+            let dinD = parseFloat(document.getElementById('din-d').value) || 0;
+            let dinY = parseFloat(document.getElementById('din-y').value) || 0;
+            let dinNet = Math.max(0, dinD - (dinY / 3));
+
+            let ingD = parseFloat(document.getElementById('ing-d').value) || 0;
+            let ingY = parseFloat(document.getElementById('ing-y').value) || 0;
+            let ingNet = Math.max(0, ingD - (ingY / 3));
+
+            // Sayısal Dersler
+            let matD = parseFloat(document.getElementById('mat-d').value) || 0;
+            let matY = parseFloat(document.getElementById('mat-y').value) || 0;
+            let matNet = Math.max(0, matD - (matY / 3));
+
+            let fenD = parseFloat(document.getElementById('fen-d').value) || 0;
+            let fenY = parseFloat(document.getElementById('fen-y').value) || 0;
+            let fenNet = Math.max(0, fenD - (fenY / 3));
+
+            // MEB LGS Katsayı Hesabı
+            let tabanPuan = 194.8;
+            let toplamPuan = tabanPuan + 
+                (turkNet * 4.3) + 
+                (inkNet * 1.7) + 
+                (dinNet * 1.9) + 
+                (ingNet * 1.5) + 
+                (matNet * 4.2) + 
+                (fenNet * 4.1);
+
+            if (toplamPuan > 500) toplamPuan = 500;
+            if (toplamPuan < 100) toplamPuan = 100;
+
+            document.getElementById('sonuc').innerHTML = `<i class="fa-solid fa-trophy"></i> Tahmini LGS Puanınız: <span>${toplamPuan.toFixed(2)}</span>`;
+
+            let netDetay = document.getElementById('netler-detay');
+            netDetay.innerHTML = `
+                <strong>Ders Net Dağılımınız:</strong><br>
+                • Türkçe: ${turkNet.toFixed(2)} Net | İnkılap: ${inkNet.toFixed(2)} Net<br>
+                • Din K.: ${dinNet.toFixed(2)} Net | İngilizce: ${ingNet.toFixed(2)} Net<br>
+                • Matematik: ${matNet.toFixed(2)} Net | Fen Bilimleri: ${fenNet.toFixed(2)} Net
+            `;
+        }
+
+        function detayGoster(id) {
+            let kutu = document.getElementById(id);
+            if (kutu) {
+                if (kutu.style.display === 'block') {
+                    kutu.style.display = 'none';
+                } else {
+                    document.querySelectorAll('.detail-box').forEach(el => el.style.display = 'none');
+                    kutu.style.display = 'block';
+                }
+            }
+        }
+
+        const subjectContent = {
+            matematik: {
+                icon: '<i class="fa-solid fa-calculator"></i>',
+                title: 'Matematik',
+                subtitle: 'Bir konu başlığı seçerek kısa konu anlatımına ve LGS taktiklerine ulaş.',
+                topics: [
+                    {
+                        heading: 'Çarpanlar ve Katlar',
+                        sections: [
+                            {
+                                heading: 'Asal Çarpanlara Ayırma ve Bölen Sayısı',
+                                text: 'Bir sayıyı asal çarpanlarına ayırırken bölme çizgisinde yalnızca asal sayılar kullanılır: 2, 3, 5, 7, 11... Sayı 1 olana kadar bölmeye devam edilir.',
+                                bullets: ['Sayı a^x · b^y biçiminde asal çarpanlarına ayrılmışsa pozitif bölen sayısı (x+1) · (y+1) olur.', 'Örnek: 12 = 2^2 · 3 olduğundan pozitif bölen sayısı (2+1) · (1+1) = 6’dır.']
+                            },
+                            {
+                                heading: 'EBOB Taktikleri',
+                                text: 'Büyük parçaları eşit ve mümkün olan en büyük küçük parçalara ayırıyorsan EBOB kullanılır. Soruda eşit paylaşma veya aynı büyüklükte parçalar oluşturma fikrini ara.',
+                                bullets: ['Nohutları eşit poşetlere koyma, tarlaya eşit aralıklarla ağaç dikme ve kumaşı eş parçalara bölme EBOB örnekleridir.', 'Bir sayı diğerinin katıysa EBOB küçük sayıdır. Örnek: EBOB(10, 30) = 10.']
+                            },
+                            {
+                                heading: 'EKOK Taktikleri',
+                                text: 'Tekrar eden olayların birlikte gerçekleştiği en yakın zamanı veya ortak ölçüde oluşturulacak en küçük bütünü arıyorsan EKOK kullanılır.',
+                                bullets: ['Nöbetlerin veya otobüslerin yeniden aynı zamana denk gelmesi, farklı boy tuğlalarla küp oluşturma EKOK örnekleridir.', 'Bir sayı diğerinin katıysa EKOK büyük sayıdır. Örnek: EKOK(10, 30) = 30.']
+                            },
+                            {
+                                heading: 'EBOB-EKOK Özel Bağıntısı',
+                                text: 'İki doğal sayının çarpımı, bu sayıların EBOB’u ile EKOK’unun çarpımına eşittir. Soruda sayılardan biri, EBOB veya EKOK verilmişse eksik bilgiyi bulmak için bu bağıntıyı kullanabilirsin.',
+                                bullets: ['A · B = EBOB(A, B) · EKOK(A, B)']
+                            },
+                            {
+                                heading: 'Asal Sayılar ve Aralarında Asal Sayılar',
+                                text: 'Aralarında asal iki sayının 1’den başka ortak pozitif böleni yoktur. Sayıların kendilerinin asal olması gerekmez; örneğin 8 ve 9 aralarında asaldır.',
+                                bullets: ['Ardışık iki doğal sayı daima aralarında asaldır.', '1, bütün pozitif tam sayılarla aralarında asaldır.', 'Aralarında asal iki sayının EBOB’u 1, EKOK’u sayıların çarpımıdır.']
+                            },
+                            {
+                                heading: 'Üslü İfadeler',
+                                text: 'Üslü ifade, bir sayının kendisiyle kaç kez çarpıldığını gösterir. Negatif sayılarda parantez önemlidir; (-4)^2 ile -4^2 farklı sonuç verir.',
+                                bullets: ['(-3)^4 = 81', '(-3)^3 = -27', '2^-4 = 1/16']
+                            }
+                        ]
+                    },
+                    {
+                        heading: 'Kareköklü İfadeler',
+                        sections: [
+                            {
+                                heading: 'Kök Dışına Çıkarma ve Kök İçine Alma',
+                                text: 'Katsayıyı kökün içine alırken karesini alıp kök içindeki sayıyla çarparsın. Kök dışına çıkarırken en büyük tam kare çarpanı bulur, karekökünü katsayı olarak yazarsın.',
+                                bullets: ['Eksi işareti dışarıda kalır: -3√2 = -√(3^2 · 2) = -√18.', '√75 = √(25 · 3) = 5√3.', 'Asal çarpanlara ayırırken ikili eşleşen çarpanlar kök dışına birer tane çıkar; eşleşmeyenler içeride kalır.']
+                            },
+                            {
+                                heading: 'Kareköklü İfadelerde Sıralama',
+                                text: 'Kareköklü ifadeleri karşılaştırırken katsayıları kökün içine alıp ifadeleri tek kök biçimine getir. Pozitif sayılarda kök içi büyük olan ifade de büyüktür.',
+                                bullets: ['6√2 = √(6^2 · 2) = √72.', '√50, 6√2 ve 4√3 ifadeleri √50, √72 ve √48 olarak karşılaştırılır; sıralama √48 < √50 < √72 olur.']
+                            },
+                            {
+                                heading: 'Toplama ve Çıkarma',
+                                text: 'Kök içleri doğrudan toplanıp çıkarılmaz. Önce kök dışına çıkarma yapılır; yalnızca kök içleri aynı olan benzer ifadelerin katsayıları toplanır veya çıkarılır.',
+                                bullets: ['√9 + √16 = 3 + 4 = 7; bu işlem √(9 + 16) şeklinde yapılamaz.', '√12 + √27 = 2√3 + 3√3 = 5√3.']
+                            },
+                            {
+                                heading: 'Çarpma ve Bölme',
+                                text: 'Köklü ifadeleri çarparken katsayıları kendi arasında, kök içlerini kendi arasında çarp. Paydada tek bir kök varsa pay ve paydayı aynı kökle çarparak paydayı rasyonel yapabilirsin.',
+                                bullets: ['a√b · c√d = (a · c)√(b · d).', '√a · √a = a (a ≥ 0).', '5/√2 = (5√2)/2.']
+                            },
+                            {
+                                heading: 'Ondalık Sayıların Karekökü',
+                                text: 'Ondalık sayıların karekökünü alırken sayıyı kesre çevirip pay ve paydayı ayrı değerlendir. Her ondalık sayı kök dışına tam çıkmaz.',
+                                bullets: ['√0,04 = √(4/100) = 2/10 = 0,2.', '√0,9 = √(9/10) = 3/√10; 0,3 değildir çünkü 0,3 · 0,3 = 0,09.']
+                            },
+                            {
+                                heading: 'Gerçek Sayılar ve Sayı Kümeleri',
+                                text: 'Gerçek sayılar, rasyonel ve irrasyonel sayıların tamamını kapsar. Bu kümeler sayı doğrusunda gösterilebilen bütün sayıları içerir.',
+                                bullets: ['Doğal sayılar (ℕ): 0, 1, 2, 3, ...', 'Tam sayılar (ℤ): ..., -2, -1, 0, 1, 2, ...', 'Rasyonel sayılar (ℚ): a/b biçiminde yazılabilen sayılar (b ≠ 0); devirli ondalıklar ve √36 = 6 bu gruptadır.', 'İrrasyonel sayılar: kesir biçiminde yazılamayan, √2 ve π gibi sayılardır; ondalık gösterimleri sonsuz ve devirsizdir.', 'Gerçek sayılar (ℝ): rasyonel ve irrasyonel sayıların birleşimidir.']
+                            },
+                            {
+                                heading: 'Cebirsel İfadeler',
+                                text: 'Benzer terimleri birleştirmek ve dağılma özelliğini kullanmak cebirsel işlemleri kolaylaştırır.',
+                                bullets: ['3x + 2x = 5x.', 'x(x + 2) = x^2 + 2x.']
+                            }
+                        ]
+                    }
+                ]
+            },
+            fen: {
+                icon: '<i class="fa-solid fa-flask-vial"></i>',
+                title: 'Fen Bilimleri',
+                subtitle: 'Fen Bilimleri konu özetleri ve sınavda işine yarayacak temel bilgiler.',
+                topics: [
+                    {
+                        heading: 'Mevsimlerin Oluşumu ve Dünya’nın Hareketleri',
+                        sections: [
+                            {
+                                heading: 'Eksen Eğikliği (23°27′)',
+                                text: 'Dünya’nın dönme ekseni, yörünge düzlemine göre 23°27′ eğiktir. Mevsimlerin oluşmasında eksen eğikliği ve Dünya’nın Güneş etrafındaki dolanma hareketi birlikte etkilidir.',
+                                bullets: ['Eksen eğikliği yıl boyunca sabit kalır.', 'Aynı anda farklı yarım kürelerde farklı mevsimler yaşanabilir.', 'Güneş ışınlarının geliş açısı ve gece-gündüz süreleri yıl içinde değişir.'],
+                                image: './assets/images.jpg',
+                                imageAlt: 'Dünya’nın dönme ekseni ve yörünge düzlemi arasındaki eğiklik'
+                            },
+                            {
+                                heading: 'Eksen Eğikliği Olmasaydı',
+                                text: 'Dünya’nın dönme ekseni yörünge düzlemine dik olsaydı, Güneş ışınlarının geliş açısı yıl boyunca aynı enlemlerde değişmeden kalırdı.',
+                                bullets: ['Mevsimler oluşmazdı.', 'Gece ve gündüz süreleri yıl boyunca yaklaşık 12 saat eşit olurdu.', 'Öğle vakti gölge boyları yıl içinde değişmezdi.']
+                            },
+                            {
+                                heading: 'Birim Yüzeye Düşen Enerji ve Isınma',
+                                text: 'Güneş ışınlarının düşme açısı, enerjinin yeryüzündeki dağılışını etkiler. Dik gelen ışınlar daha dar bir alana, eğik gelen ışınlar daha geniş bir alana yayılır.',
+                                bullets: ['Dik veya dike yakın ışınlarda birim yüzeye düşen enerji artar; öğle vakti gölge boyu kısalır.', 'Eğik ışınlarda enerji daha geniş alana yayılır ve birim yüzeye düşen enerji azalır; öğle vakti gölge boyu uzar.'],
+                                image: './assets/images (1).jpg',
+                                imageAlt: 'Güneş ışınlarının Dünya’ya geliş açısı ve aydınlanan bölgeler'
+                            },
+                            {
+                                heading: 'Dolanma Hareketi ve Elips Yörünge',
+                                text: 'Dünya, Güneş çevresinde elips biçimli bir yörüngede dolanır. Dünya’nın Güneş’e yaklaşıp uzaklaşması mevsimlerin temel nedeni değildir; belirleyici olan eksen eğikliğiyle birlikte Güneş ışınlarının geliş açısıdır.',
+                                bullets: ['Dünya Güneş’e yaklaşık 3 Ocak’ta en yakın konumdayken Kuzey Yarım Küre kış mevsimini yaşar.', 'Dünya Güneş’e yaklaşık 4 Temmuz’da en uzak konumdayken Kuzey Yarım Küre yaz mevsimini yaşar.'],
+                                image: './assets/Mevsimlerin-Olusumu-Ozel-Tarihler.jpg',
+                                imageAlt: 'Dünya’nın yörüngesinde mevsimlerin ve önemli tarihlerin gösterimi'
+                            }
+                        ]
+                    },
+                    {
+                        heading: 'Yılın Dört Kritik Tarihi ve Ekinokslar',
+                        sections: [
+                            {
+                                heading: '21 Haziran: Yaz Gün Dönümü',
+                                text: 'Güneş ışınları Yengeç Dönencesi’ne dik düşer. Kuzey Yarım Küre’de yaz, Güney Yarım Küre’de kış başlar.',
+                                bullets: ['Kuzey Yarım Küre’de yılın en uzun gündüzü, Güney Yarım Küre’de en uzun gecesi yaşanır.', 'Bu tarihten sonra Kuzey Yarım Küre’de gündüzler kısalmaya başlar.'],
+                                image: './assets/images (3).jpg',
+                                imageAlt: 'Dünya’nın 21 Haziran tarihindeki konumu'
+                            },
+                            {
+                                heading: '21 Aralık: Kış Gün Dönümü',
+                                text: 'Güneş ışınları Oğlak Dönencesi’ne dik düşer. Kuzey Yarım Küre’de kış, Güney Yarım Küre’de yaz başlar.',
+                                bullets: ['Kuzey Yarım Küre’de yılın en uzun gecesi, Güney Yarım Küre’de en uzun gündüzü yaşanır.', 'Bu tarihten sonra Kuzey Yarım Küre’de gündüzler uzamaya başlar.'],
+                                image: './assets/images (2).jpg',
+                                imageAlt: 'Dünya’nın 21 Aralık tarihindeki konumu'
+                            },
+                            {
+                                heading: '21 Mart ve 23 Eylül: Ekinokslar',
+                                text: 'Güneş ışınları Ekvator’a dik düşer. Her iki yarım kürede gece ve gündüz süreleri yaklaşık 12 saat eşit olur.',
+                                bullets: ['21 Mart’ta Kuzey Yarım Küre’de ilkbahar, Güney Yarım Küre’de sonbahar başlar.', '23 Eylül’de Kuzey Yarım Küre’de sonbahar, Güney Yarım Küre’de ilkbahar başlar.'],
+                                image: './assets/images (6).jpg',
+                                imageAlt: '21 Mart, 21 Haziran, 23 Eylül ve 21 Aralık tarihlerinin karşılaştırması'
+                            }
+                        ]
+                    },
+                    {
+                        heading: 'İklim ve Hava Olayları',
+                        sections: [
+                            {
+                                heading: 'Hava Olayları',
+                                text: 'Hava olayları dar bir alanda ve kısa süre içinde gözlenen atmosfer koşullarıdır; değişebilir ve tahminlere dayanır.',
+                                bullets: ['Yağmur, kar, dolu, sis, kırağı, çiğ ve rüzgâr hava olaylarına örnektir.', 'Hava olaylarını inceleyen bilim dalı meteoroloji, uzmanı meteorologdur.']
+                            },
+                            {
+                                heading: 'İklim',
+                                text: 'İklim, geniş bölgelerde uzun yıllar boyunca yapılan gözlem ve ölçümlerin genel sonucudur. Hava olaylarına göre daha uzun süreli ve kararlı özellik taşır.',
+                                bullets: ['İklim belirlenirken genellikle en az 30-40 yıllık gözlem sonuçları değerlendirilir.', 'Akdeniz iklimi, karasal iklim ve çöl iklimi örnek verilebilir.', 'İklimi inceleyen bilim dalı klimatoloji, uzmanı klimatologdur.']
+                            }
+                        ]
+                    },
+                    {
+                        heading: 'Atmosfer Basıncı ve Rüzgârın Oluşumu',
+                        sections: [
+                            {
+                                heading: 'Alçak Basınç Alanı',
+                                text: 'Isınan hava genleşir, yoğunluğu azalır ve yükselir. Yükselen hava nedeniyle yeryüzündeki basınç azalır.',
+                                bullets: ['Alçak basınç alanlarında bulutlanma ve yağış olasılığı artabilir.']
+                            },
+                            {
+                                heading: 'Yüksek Basınç Alanı',
+                                text: 'Soğuyan hava yoğunlaşır, ağırlaşır ve alçalır. Yeryüzüne doğru çöken hava yüksek basınç oluşturur.',
+                                bullets: ['Yüksek basınç alanlarında hava çoğunlukla açık ve bulutsuzdur.']
+                            },
+                            {
+                                heading: 'Rüzgârın Esiş Yönü',
+                                text: 'Rüzgâr, yatay yönde yüksek basınç alanından alçak basınç alanına doğru gerçekleşen hava akımıdır.',
+                                bullets: ['İki bölge arasındaki basınç farkı arttıkça rüzgârın şiddeti de artar.']
+                            }
+                        ]
+                    }
+                ]
+            },
+            turkce: {
+                icon: '<i class="fa-solid fa-pen-nib"></i>',
+                title: 'Türkçe',
+                comingSoon: 'Türkçe konu notları ve yeni nesil soru içerikleri ilerleyen güncellemelerde eklenecek.'
+            },
+            inkilap: {
+                icon: '<i class="fa-solid fa-landmark"></i>',
+                title: 'T.C. İnkılap Tarihi',
+                comingSoon: 'İnkılap Tarihi konu notları ve yeni nesil soru içerikleri ilerleyen güncellemelerde eklenecek.'
+            },
+            ingilizce: {
+                icon: '<i class="fa-solid fa-earth-americas"></i>',
+                title: 'İngilizce',
+                comingSoon: 'İngilizce konu notları ve yeni nesil soru içerikleri ilerleyen güncellemelerde eklenecek.'
+            },
+            din: {
+                icon: '<i class="fa-solid fa-kaaba"></i>',
+                title: 'Din Kültürü',
+                comingSoon: 'Din Kültürü konu notları ve yeni nesil soru içerikleri ilerleyen güncellemelerde eklenecek.'
+            }
+        };
+
+        subjectContent.fen.topics = [{
+            heading: 'Mevsimler ve İklim',
+            sections: subjectContent.fen.topics.flatMap(topic => topic.sections)
+        }];
+
+        subjectContent.fen.topics[0].sections.splice(7, 2, {
+            heading: 'İklim ve Hava Olayları',
+            text: 'Hava olayları kısa süreli ve dar alanlı atmosfer değişimleridir. İklim, bir bölgedeki hava olaylarının uzun yıllar boyunca gözlenen genel özellikleridir.',
+            bullets: [],
+            comparisonTable: {
+                headers: ['Özellik', 'Hava Olayları', 'İklim'],
+                rows: [
+                    ['Kapsam / Alan', 'Dar alanlarda; mahalle, ilçe veya şehirde görülür.', 'Geniş coğrafi bölgelerin genel özelliklerini anlatır.'],
+                    ['Zaman / Süre', 'Kısa sürelidir; saatler veya günler içinde değişebilir.', 'En az 30 yıllık gözlem ve ölçümlerin genel değerlendirmesidir.'],
+                    ['Kesinlik', 'Tahmine dayanır; kısa vadede değişebilir.', 'Uzun dönemli ve görece kararlı özellikleri belirtir.'],
+                    ['Bilim Dalı', 'Meteoroloji', 'Klimatoloji (iklim bilimi)'],
+                    ['Uzman', 'Meteorolog', 'Klimatolog (iklim bilimci)'],
+                    ['Örnekler', 'Yağmur, kar, dolu, sis, çiğ, kırağı ve rüzgâr.', 'Akdeniz, karasal, çöl ve kutup iklimi.']
+                ]
+            },
+            eventGroups: [
+                {
+                    heading: 'Gökyüzüne Yakın Hava Olayları',
+                    text: 'Bulutlarda gerçekleşen yoğuşma veya donma sonucunda oluşurlar.',
+                    events: [
+                        { title: 'Yağmur', icon: 'fa-cloud-rain', text: 'Su buharı soğuyup yoğuşarak su damlacıklarına dönüşür; damlalar ağırlaşınca sıvı hâlde yeryüzüne düşer.', image: './assets/ee.jpg', imageAlt: 'Yağmur yağışı' },
+                        { title: 'Kar', icon: 'fa-snowflake', text: 'Bulutlardaki su, sıcaklık donma noktasının altına indiğinde buz kristallerine dönüşür ve kar taneleri hâlinde düşer.' },
+                        { title: 'Dolu', icon: 'fa-cloud-showers-heavy', text: 'Güçlü hava akımları su damlalarını bulut içinde yukarı taşır. Damlalar donup katmanlar hâlinde büyüyerek buz taneleri olarak düşer.', image: './assets/images (212222.jpg', imageAlt: 'Yeryüzüne düşen dolu taneleri' }
+                    ]
+                },
+                {
+                    heading: 'Yeryüzüne Yakın Hava Olayları',
+                    text: 'Su buharının yeryüzüne yakın soğuk hava veya yüzeylerle karşılaşmasıyla oluşurlar.',
+                    events: [
+                        { title: 'Çiğ', icon: 'fa-droplet', text: 'Serin gecelerde su buharının bitki, taş ve benzeri soğuk yüzeylerde yoğuşarak su damlacıkları oluşturmasıdır.', image: './assets/images.çiyjpg.jpg', imageAlt: 'Bitki yaprağı üzerinde çiğ damlaları' },
+                        { title: 'Kırağı', icon: 'fa-icicles', text: 'Soğuk yüzeylerde su buharının sıvılaşmadan doğrudan buz kristallerine dönüşmesidir; genellikle sıcaklık 0 °C’nin altındayken görülür.', image: './assets/imagekırağıs.jpg', imageAlt: 'Yaprakların üzerinde oluşmuş kırağı kristalleri' },
+                        { title: 'Sis', icon: 'fa-smog', text: 'Yeryüzüne yakın su buharının yoğuşup havada asılı kalmasıdır. Yere inmiş bulut gibi düşünülebilir ve görüş mesafesini azaltır.', image: './assets/imagsises.jpg', imageAlt: 'Sis içinde kalan ormanlık arazi' }
+                    ]
+                }
+            ],
+            infoGroups: [
+                {
+                    heading: 'Meteoroloji ve Meteorolog',
+                    text: 'Meteoroloji; sıcaklık, rüzgâr, basınç, yağmur ve kar gibi atmosfer olaylarını gözlemleyen, değişimleri inceleyen ve kısa vadeli hava tahminleri hazırlayan bilim dalıdır.',
+                    bullets: ['Meteorolog, hava olaylarını inceleyen ve tahmin raporlarını hazırlayan uzmandır.', 'Balon, uydu, radar ve yer istasyonlarından gelen ölçümleri değerlendirir.', 'Çalışmalar günlük veya birkaç günlük hava değişimlerine odaklanır.']
+                },
+                {
+                    heading: 'Klimatoloji ve Klimatolog',
+                    text: 'Klimatoloji, bir bölgedeki hava olaylarının en az 30 yıllık gözlem ve ölçümlere dayanan genel özelliklerini ve iklim tiplerini inceler.',
+                    bullets: ['Klimatolog, uzun yıllara ait verileri analiz ederek iklim özelliklerini ve iklim haritalarını ortaya çıkaran uzmandır.', 'Günlük hava tahmini yerine uzun dönemli eğilimleri, kuraklık döngülerini ve iklim değişikliğini inceler.', 'Örnek: Akdeniz ikliminde yazlar sıcak ve kurak geçer.']
+                }
+            ]
+        });
+
+        subjectContent.fen.topics[0].sections.splice(0, 3, {
+            heading: 'Eksen Eğikliği ve Isınma',
+            text: 'Mevsimlerin oluşumunda Dünya’nın eksen eğikliği ve Güneş ışınlarının yeryüzüne düşme açısı belirleyicidir.',
+            bullets: [],
+            infoGroups: [
+                {
+                    heading: 'Eksen Eğikliği (23°27′)',
+                    text: 'Dünya’nın dönme ekseni ile yörünge düzlemi arasında 23°27′ eğiklik vardır. Bu eğiklik ve Dünya’nın Güneş çevresindeki dolanması, yıl içinde mevsimlerin ve gece-gündüz sürelerinin değişmesini sağlar.',
+                    bullets: ['Aynı anda farklı yarım kürelerde farklı mevsimler yaşanabilir.', 'Güneş ışınlarının geliş açısı yıl boyunca değişir.'],
+                    image: './assets/images.jpg',
+                    imageAlt: 'Dünya’nın dönme ekseni ile yörünge düzlemi arasındaki 23°27′ eğiklik'
+                },
+                {
+                    heading: 'Eksen Eğikliği Olmasaydı',
+                    text: 'Dünya’nın ekseni yörünge düzlemine dik olsaydı, Güneş ışınlarının geliş açısı yıl boyunca değişmezdi.',
+                    bullets: ['Mevsimler oluşmazdı.', 'Gece ve gündüz süreleri yıl boyunca yaklaşık 12 saat olurdu.', 'Öğle vakti gölge boyları yıl içinde değişmezdi.']
+                },
+                {
+                    heading: 'Birim Yüzeye Düşen Enerji ve Isınma',
+                    text: 'Dik gelen Güneş ışınları dar bir alana, eğik gelen ışınlar daha geniş bir alana yayılır. Bu nedenle birim yüzeye aktarılan enerji miktarı değişir.',
+                    bullets: ['Dik ışınlarda birim yüzey daha fazla enerji alır; öğle gölgeleri kısalır ve yüzey daha çok ısınır.', 'Eğik ışınlarda enerji geniş alana yayılır; birim yüzeye düşen enerji azalır ve öğle gölgeleri uzar.'],
+                    image: './assets/images (1).jpg',
+                    imageAlt: 'Güneş ışınlarının Dünya’ya farklı açılarla düşmesi'
+                }
+            ]
+        });
+
+        subjectContent.fen.topics[0].sections.splice(2, 3, {
+            heading: 'Yılın Önemli Tarihleri ve Ekinokslar',
+            text: 'Dünya’nın Güneş çevresindeki yıllık hareketinde dört tarih, mevsimlerin başlangıcını ve gece-gündüz sürelerini anlamak için önemlidir.',
+            bullets: [],
+            infoGroups: [
+                {
+                    heading: '21 Haziran: Yaz Gün Dönümü',
+                    text: 'Güneş ışınları Yengeç Dönencesi’ne dik düşer. Kuzey Yarım Küre’de yaz, Güney Yarım Küre’de kış başlar.',
+                    bullets: ['Kuzey Yarım Küre’de yılın en uzun gündüzü, Güney Yarım Küre’de en uzun gecesi yaşanır.', 'Bu tarihten sonra Kuzey Yarım Küre’de gündüzler kısalmaya başlar.'],
+                    image: './assets/images (3).jpg',
+                    imageAlt: 'Dünya’nın 21 Haziran tarihindeki konumu'
+                },
+                {
+                    heading: '21 Aralık: Kış Gün Dönümü',
+                    text: 'Güneş ışınları Oğlak Dönencesi’ne dik düşer. Kuzey Yarım Küre’de kış, Güney Yarım Küre’de yaz başlar.',
+                    bullets: ['Kuzey Yarım Küre’de yılın en uzun gecesi, Güney Yarım Küre’de en uzun gündüzü yaşanır.', 'Bu tarihten sonra Kuzey Yarım Küre’de gündüzler uzamaya başlar.'],
+                    image: './assets/images (2).jpg',
+                    imageAlt: 'Dünya’nın 21 Aralık tarihindeki konumu'
+                },
+                {
+                    heading: '21 Mart ve 23 Eylül: Ekinokslar',
+                    text: 'Güneş ışınları Ekvator’a dik düşer; gece ve gündüz süreleri Dünya genelinde yaklaşık 12 saat eşitlenir.',
+                    bullets: ['21 Mart’ta Kuzey Yarım Küre’de ilkbahar, Güney Yarım Küre’de sonbahar başlar.', '23 Eylül’de Kuzey Yarım Küre’de sonbahar, Güney Yarım Küre’de ilkbahar başlar.'],
+                    image: './assets/images (6).jpg',
+                    imageAlt: '21 Mart, 21 Haziran, 23 Eylül ve 21 Aralık tarihlerinin karşılaştırması'
+                }
+            ]
+        });
+
+        subjectContent.fen.topics[0].sections.splice(4, 3, {
+            heading: 'Atmosfer Basıncı ve Rüzgâr',
+            text: 'Sıcaklık farkları hava yoğunluğunu ve basıncı değiştirir. Hava, yüksek basınç alanından alçak basınç alanına doğru hareket ederek rüzgârı oluşturur.',
+            bullets: [],
+            infoGroups: [
+                {
+                    heading: 'Alçak Basınç Alanı',
+                    text: 'Sıcak hava genleşir, yoğunluğu azalır ve yükselir. Yükselen hava nedeniyle yeryüzündeki basınç düşer.',
+                    bullets: ['Yükselici hava hareketi görülür.', 'Bulutlanma ve yağış olasılığı artabilir.'],
+                    image: './assets/imagbasınçcares.jpg',
+                    imageAlt: 'Yüksek ve alçak basınç alanlarında hava hareketleri'
+                },
+                {
+                    heading: 'Yüksek Basınç Alanı',
+                    text: 'Soğuk hava yoğunlaşır, ağırlaşır ve alçalır. Yeryüzüne doğru çöken hava yüksek basınç oluşturur.',
+                    bullets: ['Alçalıcı hava hareketi görülür.', 'Hava çoğunlukla açık ve bulutsuzdur.']
+                },
+                {
+                    heading: 'Rüzgârın Esiş Yönü',
+                    text: 'Rüzgâr, yeryüzüne yakın yatay hava akımıdır ve yüksek basınç alanından alçak basınç alanına doğru eser.',
+                    bullets: ['İki bölge arasındaki basınç farkı arttıkça rüzgârın şiddeti artar.']
+                },
+                {
+                    heading: 'Kara ve Deniz Meltemleri',
+                    text: 'Deniz suyu, kara yüzeylerine göre daha yavaş ısınıp soğur. Kara ve deniz arasındaki bu sıcaklık farkı, gün içinde yön değiştiren yerel rüzgârlar oluşturur.',
+                    bullets: ['Gündüz kara daha hızlı ısınır; ısınan hava yükselip alçak basınç oluşturur. Serin hava denizden karaya eser. Buna deniz meltemi denir.', 'Gece kara daha hızlı soğur; deniz görece sıcak kalır. Rüzgâr karadan denize eser. Buna kara meltemi denir.'],
+                    image: './assets/images (111).jpg',
+                    imageAlt: 'Gündüz deniz meltemi ve gece kara meltemi şeması',
+                    imageClass: 'topic-diagram-sea-land'
+                }
+            ]
+        });
+
+        let activeSubjectKey = null;
+        let activeMathTopicIndex = null;
+        let activeMathSectionIndex = null;
+        let activeFenTopicIndex = null;
+        let activeFenSectionIndex = null;
+
+        function showSubjectDetail(key) {
+            const data = subjectContent[key];
+            const panel = document.getElementById('subject-detail-view');
+            const title = document.getElementById('detail-title');
+            const content = document.getElementById('detail-content');
+            const icon = document.getElementById('detail-icon');
+            const backButton = document.getElementById('back-to-cards');
+            const cardsSection = document.getElementById('dersler');
+            if (!data || !panel || !title || !content || !icon || !cardsSection) return;
+
+            activeSubjectKey = key;
+            activeMathTopicIndex = null;
+            activeMathSectionIndex = null;
+            activeFenTopicIndex = null;
+            activeFenSectionIndex = null;
+            title.textContent = data.title;
+            icon.innerHTML = data.icon;
+            if (key === 'matematik' || key === 'fen') {
+                content.innerHTML = `
+                    <p class="subtitle">${formatPowerText(data.subtitle)}</p>
+                    <div class="topic-list">
+                        ${data.topics.map((topic, index) => {
+                            const topicAttribute = key === 'matematik' ? 'data-math-topic' : 'data-fen-topic';
+                            return `
+                            <button class="topic-link" type="button" ${topicAttribute}="${index}">
+                                <span>${formatPowerText(topic.heading)}</span>
+                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            </button>
+                        `}).join('')}
+                    </div>
+                    ${key === 'fen' ? '<p class="source-note"><strong>Kaynakça:</strong> Pruva Akademi · Bilgenç Fen Bilim.net · Bikifi</p>' : ''}
+                `;
+                if (backButton) backButton.textContent = '← Kartlara Dön';
+            } else if (data.comingSoon) {
+                content.innerHTML = `
+                    <div class="chapter-box">
+                        <h4><i class="fa-regular fa-clock" aria-hidden="true"></i> İçerikler ilerleyen güncellemelerde</h4>
+                        <p>${formatPowerText(data.comingSoon)}</p>
+                    </div>
+                `;
+                if (backButton) backButton.textContent = '← Kartlara Dön';
+            } else {
+                content.innerHTML = `
+                    <p class="subtitle">${formatPowerText(data.subtitle)}</p>
+                    ${data.chapters.map(chapter => `
+                        <div class="chapter-box">
+                            <h4>${formatPowerText(chapter.heading)}</h4>
+                            <p>${formatPowerText(chapter.text)}</p>
+                            <ul>
+                                ${chapter.bullets.map(item => `<li>${formatPowerText(item)}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `).join('')}
+                `;
+                if (backButton) backButton.textContent = '← Kartlara Dön';
+            }
+
+            cardsSection.classList.add('hidden');
+            panel.classList.add('active');
+            panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showMathTopic(index) {
+            const topic = subjectContent.matematik.topics[index];
+            const title = document.getElementById('detail-title');
+            const content = document.getElementById('detail-content');
+            const backButton = document.getElementById('back-to-cards');
+            if (!topic || !title || !content) return;
+
+            activeMathTopicIndex = index;
+            activeMathSectionIndex = null;
+            title.textContent = topic.heading;
+            content.innerHTML = topic.sections ? `
+                <p class="subtitle">${formatPowerText(topic.subtitle || 'Bir alt konu seçerek konu anlatımını aç.')}</p>
+                <div class="topic-list">
+                    ${topic.sections.map((section, sectionIndex) => `
+                        <button class="topic-link" type="button" data-math-topic-index="${index}" data-math-section="${sectionIndex}">
+                            <span>${formatPowerText(section.heading)}</span>
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                    `).join('')}
+                </div>
+            ` : `
+                <div class="chapter-box">
+                    <p>${formatPowerText(topic.text)}</p>
+                    <ul>
+                        ${topic.bullets.map(item => `<li>${formatPowerText(item)}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            if (backButton) backButton.textContent = '← Matematik Konularına Dön';
+            document.getElementById('subject-detail-view').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showMathSection(topicIndex, sectionIndex) {
+            const topic = subjectContent.matematik.topics[topicIndex];
+            const section = topic?.sections?.[sectionIndex];
+            const title = document.getElementById('detail-title');
+            const content = document.getElementById('detail-content');
+            const backButton = document.getElementById('back-to-cards');
+            if (!section || !title || !content) return;
+
+            activeMathTopicIndex = topicIndex;
+            activeMathSectionIndex = sectionIndex;
+            title.textContent = section.heading;
+            content.innerHTML = `
+                <div class="chapter-box">
+                    <p>${formatPowerText(section.text)}</p>
+                    <ul>
+                        ${section.bullets.map(item => `<li>${formatPowerText(item)}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            if (backButton) backButton.textContent = `← ${topic.heading} Konularına Dön`;
+            document.getElementById('subject-detail-view').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showFenTopic(index) {
+            const topic = subjectContent.fen.topics[index];
+            const title = document.getElementById('detail-title');
+            const content = document.getElementById('detail-content');
+            const backButton = document.getElementById('back-to-cards');
+            if (!topic || !title || !content) return;
+
+            activeFenTopicIndex = index;
+            activeFenSectionIndex = null;
+            title.textContent = topic.heading;
+            content.innerHTML = `
+                <p class="subtitle">Bir alt başlık seçerek konu anlatımını aç.</p>
+                <div class="topic-list">
+                    ${topic.sections.map((section, sectionIndex) => `
+                        <button class="topic-link" type="button" data-fen-topic-index="${index}" data-fen-section="${sectionIndex}">
+                            <span>${formatPowerText(section.heading)}</span>
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                    `).join('')}
+                </div>
+                <p class="source-note"><strong>Kaynakça:</strong> Pruva Akademi · Bilgenç Fen Bilim.net · Bikifi</p>
+            `;
+            if (backButton) backButton.textContent = '← Fen Bilimleri Konularına Dön';
+            document.getElementById('subject-detail-view').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showFenSection(topicIndex, sectionIndex) {
+            const topic = subjectContent.fen.topics[topicIndex];
+            const section = topic?.sections?.[sectionIndex];
+            const title = document.getElementById('detail-title');
+            const content = document.getElementById('detail-content');
+            const backButton = document.getElementById('back-to-cards');
+            if (!topic || !section || !title || !content) return;
+
+            activeFenTopicIndex = topicIndex;
+            activeFenSectionIndex = sectionIndex;
+            title.textContent = section.heading;
+            content.innerHTML = `
+                <div class="chapter-box">
+                    <p>${formatPowerText(section.text)}</p>
+                    ${section.bullets.length ? `
+                        <ul>
+                            ${section.bullets.map(item => `<li>${formatPowerText(item)}</li>`).join('')}
+                        </ul>
+                    ` : ''}
+                    ${section.comparisonTable ? `
+                        <div class="weather-table-wrap">
+                            <table class="weather-table">
+                                <thead><tr>${section.comparisonTable.headers.map(cell => `<th>${formatPowerText(cell)}</th>`).join('')}</tr></thead>
+                                <tbody>
+                                    ${section.comparisonTable.rows.map(row => `<tr>${row.map(cell => `<td>${formatPowerText(cell)}</td>`).join('')}</tr>`).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    ` : ''}
+                    ${section.eventGroups ? section.eventGroups.map(group => `
+                        <section class="weather-group">
+                            <h4>${formatPowerText(group.heading)}</h4>
+                            <p>${formatPowerText(group.text)}</p>
+                            <div class="weather-event-grid">
+                                ${group.events.map(event => `
+                                    <article class="weather-event">
+                                        <span class="weather-event-icon"><i class="fa-solid ${event.icon}" aria-hidden="true"></i></span>
+                                        <div><h4>${formatPowerText(event.title)}</h4><p>${formatPowerText(event.text)}</p></div>
+                                        ${event.image ? `<img class="weather-event-image" src="${event.image}" alt="${event.imageAlt}" loading="lazy">` : ''}
+                                    </article>
+                                `).join('')}
+                            </div>
+                        </section>
+                    `).join('') : ''}
+                    ${section.infoGroups ? section.infoGroups.map(group => `
+                        <section class="weather-info-group">
+                            <h4>${formatPowerText(group.heading)}</h4>
+                            <p>${formatPowerText(group.text)}</p>
+                            <ul>${group.bullets.map(item => `<li>${formatPowerText(item)}</li>`).join('')}</ul>
+                            ${group.image ? `<img class="topic-diagram ${group.imageClass || ''}" src="${group.image}" alt="${group.imageAlt}" loading="lazy">` : ''}
+                        </section>
+                    `).join('') : ''}
+                    ${section.events ? `
+                        <div class="weather-event-grid">
+                            ${section.events.map(event => `
+                                <article class="weather-event">
+                                    <span class="weather-event-icon"><i class="fa-solid ${event.icon}" aria-hidden="true"></i></span>
+                                    <div><h4>${formatPowerText(event.title)}</h4><p>${formatPowerText(event.text)}</p></div>
+                                </article>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    ${section.image ? `<img class="topic-diagram" src="${section.image}" alt="${section.imageAlt}" loading="lazy">` : ''}
+                </div>
+                <p class="source-note"><strong>Kaynakça:</strong> Pruva Akademi · Bilgenç Fen Bilim.net · Bikifi</p>
+            `;
+            if (backButton) backButton.textContent = `← ${topic.heading} Konularına Dön`;
+            document.getElementById('subject-detail-view').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function geriDonKartlara() {
+            const cardsSection = document.getElementById('dersler');
+            const panel = document.getElementById('subject-detail-view');
+            if (activeSubjectKey === 'fen' && activeFenSectionIndex !== null) {
+                showFenTopic(activeFenTopicIndex);
+                return;
+            }
+            if (activeSubjectKey === 'fen' && activeFenTopicIndex !== null) {
+                showSubjectDetail('fen');
+                return;
+            }
+            if (activeSubjectKey === 'matematik' && activeMathSectionIndex !== null) {
+                showMathTopic(activeMathTopicIndex);
+                return;
+            }
+            if (activeSubjectKey === 'matematik' && activeMathTopicIndex !== null) {
+                showSubjectDetail('matematik');
+                return;
+            }
+            activeSubjectKey = null;
+            activeMathTopicIndex = null;
+            activeMathSectionIndex = null;
+            activeFenTopicIndex = null;
+            activeFenSectionIndex = null;
+            if (cardsSection) cardsSection.classList.remove('hidden');
+            if (panel) panel.classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showCalculatorPage() {
+            const calcSection = document.getElementById('hesaplama');
+            if (!calcSection) return;
+
+            document.body.classList.add('calculator-open');
+            calcSection.classList.add('active');
+        }
+
+        function geriDonNotlara() {
+            const calcSection = document.getElementById('hesaplama');
+            document.body.classList.remove('calculator-open');
+            if (calcSection) calcSection.classList.remove('active');
+            history.replaceState(null, '', `${location.pathname}${location.search}#anasayfa`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showAboutPage() {
+            const aboutSection = document.getElementById('hakkimizda');
+            if (!aboutSection) return;
+
+            document.body.classList.add('about-open');
+            aboutSection.classList.add('active');
+        }
+
+        function geriDonHakkimda() {
+            const aboutSection = document.getElementById('hakkimizda');
+            document.body.classList.remove('about-open');
+            if (aboutSection) aboutSection.classList.remove('active');
+            history.replaceState(null, '', `${location.pathname}${location.search}#anasayfa`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showTacticsPage() {
+            const tacticsSection = document.getElementById('taktikler');
+            if (!tacticsSection) return;
+
+            document.body.classList.add('tactics-open');
+            tacticsSection.classList.add('active');
+        }
+
+        function geriDonTaktiklerden() {
+            const tacticsSection = document.getElementById('taktikler');
+            document.body.classList.remove('tactics-open');
+            if (tacticsSection) tacticsSection.classList.remove('active');
+            history.replaceState(null, '', `${location.pathname}${location.search}#anasayfa`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function baglanKartlar() {
+            const cards = document.querySelectorAll('.subject-card');
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    cards.forEach(item => item.classList.remove('selected'));
+                    card.classList.add('selected');
+                    showSubjectDetail(card.dataset.subject);
+                });
+            });
+
+            const geriButonu = document.getElementById('back-to-cards');
+            if (geriButonu) {
+                geriButonu.addEventListener('click', geriDonKartlara);
+            }
+
+            const detailContent = document.getElementById('detail-content');
+            if (detailContent) {
+                detailContent.addEventListener('click', event => {
+                    const sectionButton = event.target.closest('[data-math-section]');
+                    if (sectionButton) {
+                        showMathSection(Number(sectionButton.dataset.mathTopicIndex), Number(sectionButton.dataset.mathSection));
+                        return;
+                    }
+
+                    const topicButton = event.target.closest('[data-math-topic]');
+                    if (topicButton) {
+                        showMathTopic(Number(topicButton.dataset.mathTopic));
+                    }
+
+                    const fenTopicButton = event.target.closest('[data-fen-topic]');
+                    if (fenTopicButton) {
+                        showFenTopic(Number(fenTopicButton.dataset.fenTopic));
+                    }
+
+                    const fenSectionButton = event.target.closest('[data-fen-section]');
+                    if (fenSectionButton) {
+                        showFenSection(Number(fenSectionButton.dataset.fenTopicIndex), Number(fenSectionButton.dataset.fenSection));
+                    }
+                });
+            }
+
+            const calcNavLink = document.querySelector('.navbar a[href="#hesaplama"]');
+            if (calcNavLink) {
+                calcNavLink.addEventListener('click', event => {
+                    event.preventDefault();
+                    showCalculatorPage();
+                    history.pushState(null, '', '#hesaplama');
+                });
+            }
+
+            const geriNotButonu = document.getElementById('back-to-notes');
+            if (geriNotButonu) {
+                geriNotButonu.addEventListener('click', geriDonNotlara);
+            }
+
+            const aboutNavLink = document.querySelector('.navbar a[href="#hakkimizda"]');
+            if (aboutNavLink) {
+                aboutNavLink.addEventListener('click', event => {
+                    event.preventDefault();
+                    showAboutPage();
+                    history.pushState(null, '', '#hakkimizda');
+                });
+            }
+
+            const geriHakkimdaButonu = document.getElementById('back-from-about');
+            if (geriHakkimdaButonu) {
+                geriHakkimdaButonu.addEventListener('click', geriDonHakkimda);
+            }
+
+            const tacticsNavLink = document.querySelector('.navbar a[href="#taktikler"]');
+            if (tacticsNavLink) {
+                tacticsNavLink.addEventListener('click', event => {
+                    event.preventDefault();
+                    showTacticsPage();
+                    history.pushState(null, '', '#taktikler');
+                });
+            }
+
+            const geriTaktiklerButonu = document.getElementById('back-from-tactics');
+            if (geriTaktiklerButonu) {
+                geriTaktiklerButonu.addEventListener('click', geriDonTaktiklerden);
+            }
+
+            if (location.hash === '#hesaplama') {
+                showCalculatorPage();
+            } else if (location.hash === '#hakkimizda') {
+                showAboutPage();
+            } else if (location.hash === '#taktikler') {
+                showTacticsPage();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            baglanKartlar();
+        });
+    </script>
+</body>
+</html>
